@@ -46,11 +46,11 @@ router.delete("/:id", validateId, (req, res, next) => {
 
 // eslint-disable-next-line
 router.use((err, req, res, next) => {
-    console.log(err.message);
-    res.status(err.status || 500.json({
-        message : err.message,
-        customMessage : "Something here"
-    }))
-})
+  console.log(err.message);
+  res.status(err.status || 500).json({
+    message: err.message,
+    customMessage: "Something here",
+  });
+});
 
 module.exports = router;
