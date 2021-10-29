@@ -1,14 +1,44 @@
-/*
-play this: https://www.youtube.com/watch?v=d-diB65scQU
+//Pull your server into this file and start it!
+const express = require("express");
+const app = express();
 
-Sing along:
+const dotenv = require("dotenv");
 
-here's a little code I wrote, please read the README word for word, don't worry, you got this
-in every task there may be trouble, but if you worry you make it double, don't worry, you got this
-ain't got no sense of what is REST? just concentrate on learning Express, don't worry, you got this
-your file is getting way too big, bring a Router and make it thin, don't worry, be crafty
-there is no data on that route, just write some code, you'll sort it out… don't worry, just hack it…
-I need this code, but don't know where, perhaps should make some middleware, don't worry, just hack it
+// SETTING UP CONFIG.ENV FILE VARIABLES
+dotenv.config({
+  path: "./config/config.env",
+});
 
-Pull your server into this file and start it!
-*/
+// HANDLING UNCAUGHT EXCEPTION ERRORS
+process.on("uncaughtException", (err) => {
+  console.log(`ERROR: ${err.message}`);
+  console.log("Shutting down the server due to uncaught exception");
+  process.exit(1);
+});
+
+// SETUP BODY PARSER
+app.use(express.json());
+
+// IMPORTING ALL ROUTES
+
+// USE ALL ROUTES
+
+// HANDLE UNHANDLED ROUTES
+
+// MIDDLEWARE => HANDLE ERRORS
+
+const PORT = process.env.PORT;
+const server = app.listen(PORT, () => {
+  console.log(
+    `Server is listening on port ${PORT} in ${process.env.NODE_ENV} mode.`
+  );
+});
+
+// HANDLING UNHANDLED PROMISE REJECTION ERROR
+process.on("unhandledRejection", (err) => {
+  console.log(`ERROR: ${err.message}`);
+  console.log("Shutting down the server due to unhandled promise rejection");
+  server.close(() => {
+    process.exit(1);
+  });
+});
