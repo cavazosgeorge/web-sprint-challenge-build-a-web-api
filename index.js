@@ -10,18 +10,20 @@ dotenv.config({
 });
 
 // HANDLING UNCAUGHT EXCEPTION ERRORS
-process.on("uncaughtException", (err) => {
-  console.log(`ERROR: ${err.message}`);
-  console.log("Shutting down the server due to uncaught exception");
-  process.exit(1);
-});
+// process.on("uncaughtException", (err) => {
+//   console.log(`ERROR: ${err.message}`);
+//   console.log("Shutting down the server due to uncaught exception");
+//   process.exit(1);
+// });
 
 // SETUP BODY PARSER
 app.use(express.json());
 
 // IMPORTING ALL ROUTES
+const projects = require("./api/projects/projects-router");
 
 // USE ALL ROUTES
+app.use("/api", projects);
 
 // HANDLE UNHANDLED ROUTES
 
@@ -29,9 +31,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port ${PORT} in ${process.env.NODE_ENV} mode.`
-  );
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 // HANDLING UNHANDLED PROMISE REJECTION ERROR
