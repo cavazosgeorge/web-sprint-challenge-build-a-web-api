@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "SET NODE_ENV=PRODUCTION & node index",
+    "start": "node index",
     "server": "nodemon index",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand --silent",
     "resetdb": "knex migrate:rollback && knex migrate:latest && knex seed:run"
