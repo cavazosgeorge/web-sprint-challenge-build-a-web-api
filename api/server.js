@@ -1,9 +1,23 @@
-const express = require('express');
-const server = express();
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
-// Configure your server here
-// Build your actions router in /api/actions/actions-router.js
-// Build your projects router in /api/projects/projects-router.js
-// Do NOT `server.listen()` inside this file!
+const projectRouter = require("./projects/projects-router");
+const actionsRouter = require("./actions/actions-router");
 
-module.exports = server;
+const errorMiddleware = require("./middlewares/errors");
+
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/projects", projectRouter);
+app.use("/api/actions", actionsRouter);
+
+// Handle ERRORS
+app.use(errorMiddleware);
+
+app.get("/", (req, res) => {
+  res.send(`<h2>Let's write some middleware!</h2>`);
+});
+
+module.exports = app;
