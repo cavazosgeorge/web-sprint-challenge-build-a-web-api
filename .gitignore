@@ -3,6 +3,7 @@
 
 # VSCode settings
 .vscode/
+.github/
 
 # Logs
 logs
@@ -67,7 +68,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-
+config/
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
